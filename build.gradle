@@ -6,7 +6,11 @@ plugins {
 group 'org.example'
 version '1.0-SNAPSHOT'
 shadowJar {
-    archiveFileName = "myname.jar"
+    archiveFileName = "goit_dev_1_hw_gradle.jar"
+    mergeServiceFiles()
+    dependencies {
+        include(dependency("com.google.code.gson:gson:2.10.1"))
+    }
 }
 repositories {
     mavenCentral()
@@ -19,7 +23,13 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.10.1'
 
 }
-mainClassName = "Main"
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'Main'
+        )
+    }
+}
 
 test {
     useJUnitPlatform()
